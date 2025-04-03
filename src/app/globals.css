@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 51, 51, 51;
+  --background-start-rgb: 248, 250, 252;
+  --background-end-rgb: 255, 255, 255;
+  
+  /* Minecraft-inspired colors */
+  --primary-green: 68, 189, 50;      /* #44bd32 - Minecraft grass green */
+  --secondary-green: 39, 174, 96;    /* #27ae60 - Darker green */
+  --accent-green: 85, 239, 196;      /* #55efc4 - Lighter green */
+  --dark-green: 0, 148, 50;          /* #009432 - Very dark green */
+  --wood-brown: 131, 101, 57;        /* #836539 - Minecraft wood color */
+  --stone-gray: 189, 195, 199;       /* #bdc3c7 - Stone/UI element color */
+  --dark-blue: 41, 50, 65;           /* #293241 - Dark blue for dark mode */
+  --deep-blue: 26, 32, 44;           /* #1a202c - Deeper blue for dark mode */
+}
+
+.dark {
+  --foreground-rgb: 229, 231, 235;
+  --background-start-rgb: 26, 32, 44;
+  --background-end-rgb: 17, 24, 39;
+}
+
+@layer base {
+  body {
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+      to bottom,
+      rgb(var(--background-start-rgb)),
+      rgb(var(--background-end-rgb))
+    );
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Minecraft', 'Roboto', sans-serif;
+    font-weight: 700;
+  }
+  
+  /* Minecraft-inspired pixel border style */
+  .pixel-border {
+    box-shadow: 
+      0 0 0 2px rgba(var(--primary-green), 0.7),
+      0 0 0 4px rgba(var(--dark-green), 0.3);
+  }
+}
+
+@layer components {
+  /* Button styles */
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .btn-primary {
+    @apply bg-[rgb(var(--primary-green))] text-white hover:bg-[rgb(var(--secondary-green))] shadow-md;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-[rgb(var(--primary-green))] text-[rgb(var(--primary-green))] dark:text-white hover:bg-[rgba(var(--primary-green),0.1)];
+  }
+  
+  /* Section styles */
+  .container-section {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+  
+  /* Card styles */
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-all duration-300;
+  }
+  
+  /* Animations */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  .animate-bounce-slow {
+    animation: bounce 2s ease-in-out infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  /* Minecraft themed styles */
+  .minecraft-btn {
+    @apply btn bg-[rgb(var(--primary-green))] text-white border-b-4 border-[rgb(var(--dark-green))] hover:border-b-0 hover:mt-1 hover:mb-0 transition-all;
+  }
+  
+  .minecraft-panel {
+    @apply bg-white dark:bg-gray-800 border-2 border-[rgb(var(--stone-gray))] dark:border-gray-700 p-6;
+    box-shadow: 8px 8px 0 rgba(var(--stone-gray), 0.5);
+  }
+
+  .dark .minecraft-panel {
+    box-shadow: 8px 8px 0 rgba(41, 50, 65, 0.5);
+  }
+  
+  /* Page transition animations */
+  .page-enter {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .page-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  .page-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .page-exit-active {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 300ms, transform 300ms;
+  }
+  .page-exit-active {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 300ms, transform 300ms;
+  }
+
+  /* Client circles animation */
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes counter-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+
+  .spin-circle {
+    animation: spin 15s linear infinite;
+    transform-origin: center center;
+  }
+
+  .counter-spin {
+    animation: counter-spin 15s linear infinite;
+    transform-origin: center center;
+  }
+}
